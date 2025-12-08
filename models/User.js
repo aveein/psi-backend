@@ -1,10 +1,8 @@
-const {  DataTypes, Model } = require('sequelize');
-const sequelize = require('../db').sequelize;
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../db").sequelize;
 
 // Invalid
-class User extends Model {
- 
-}
+class User extends Model {}
 
 User.init(
   {
@@ -22,7 +20,10 @@ User.init(
       allowNull: false,
     },
   },
-  { sequelize },
+  {
+    sequelize,
+    tableName: "users", // 👈 force table name
+  }
 );
 
 module.exports = User;

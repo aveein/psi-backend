@@ -1,10 +1,7 @@
-const {  DataTypes, Model } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../db').sequelize;
 
-// Invalid
-class BlackListUser extends Model {
- 
-}
+class BlackListUser extends Model {}
 
 BlackListUser.init(
   {
@@ -13,48 +10,24 @@ BlackListUser.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    card_no: {
-      type: DataTypes.STRING,
-    },
-    full_name: {
-      type: DataTypes.STRING,
-    },
-    name:{
-      type: DataTypes.STRING,
-    },
-    dob:{
-      type: DataTypes.STRING,
-    },
-    gender:{
-      type: DataTypes.STRING,
-    },
-     nationality:{
-      type: DataTypes.STRING,
-    },
-     visa_type:{
-      type: DataTypes.STRING,
-    },
-    joining_date:{
-      type: DataTypes.STRING,
-    },
-     current_site_name:{
-      type: DataTypes.STRING,
-    },
-    leaving_date:{
-      type: DataTypes.STRING,
-    },
-    leaving_reason:{
-      type: DataTypes.TEXT,
-    },
-    employee_photo:{
-      type: DataTypes.TEXT,
-    },
-    card_photo:{
-      type: DataTypes.TEXT,
-    }
-
+    card_no: DataTypes.STRING,
+    full_name: DataTypes.STRING,
+    name: DataTypes.STRING,
+    dob: DataTypes.STRING,
+    gender: DataTypes.STRING,
+    nationality: DataTypes.STRING,
+    visa_type: DataTypes.STRING,
+    joining_date: DataTypes.STRING,
+    current_site_name: DataTypes.STRING,
+    leaving_date: DataTypes.STRING,
+    leaving_reason: DataTypes.TEXT,
+    employee_photo: DataTypes.TEXT,
+    card_photo: DataTypes.TEXT,
   },
-  { sequelize },
+  { 
+    sequelize,
+    tableName: 'blacklistusers',   // 👈 force table name
+  }
 );
 
 module.exports = BlackListUser;
