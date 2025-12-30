@@ -51,7 +51,8 @@ class BlackListController {
           .json({ message: "IP address added to blacklist successfully" });
       }
     } catch (error) {
-      return res.status(500).json({ message: "Internal Server Error" });
+      console.log(error);
+      return res.status(500).json(error);
     }
   }
 
