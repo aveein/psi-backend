@@ -7,6 +7,7 @@ const User = require("./models/User");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const AuthController = require("./controllers/AuthController");
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -53,6 +54,8 @@ app.post("/api/blacklist", uploadMiddleware, BlackListController.addToBlackList)
 app.delete("/api/blacklist/:id", BlackListController.deleteBlackList);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.post('/api/login', AuthController.login);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
