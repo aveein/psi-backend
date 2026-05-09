@@ -1,23 +1,27 @@
-const UserModel = require("./User");
-const BlackListUserModel = require("./BlackListUser");
+const User = require("./User");
+const Employee = require("./Employee");
+const EmploymentRecord = require("./EmploymentRecord");
+const TransferRequest = require("./TransferRequest");
+const Site = require("./Site");
+const CustomField = require("./CustomField");
+const AuditLog = require("./AuditLog");
+const RecycleBin = require("./RecycleBin");
+const Permission = require("./Permission");
 
-// Initialize models with a Sequelize instance and DataTypes
-function initModels(sequelize, DataTypes) {
-  // If your model files export a function like (sequelize, DataTypes) => Model
-  const User =
-    typeof UserModel === "function"
-      ? new UserModel(sequelize, DataTypes)
-      : UserModel; // if already a model instance/class
+Employee.hasMany(EmploymentRecord, { foreignKey: "empId", as: "records", onDelete: "CASCADE" });
+EmploymentRecord.belongsTo(Employee, { foreignKey: "empId", as: "employee" });
 
-  const BlackListUser =
-    typeof BlackListUserModel === "function"
-      ? new BlackListUserModel(sequelize, DataTypes)
-      : BlackListUserModel;
+Employee.hasMany(TransferRequest, { foreignKey: "empId", as: "transfers", onDelete: "CASCADE" });
+TransferRequest.belongsTo(Employee, { foreignKey: "empId", as: "employee" });
 
-  // define associations here if needed, e.g.:
-  // User.hasMany(BlackListUser); BlackListUser.belongsTo(User);
-
-  return { User, BlackListUser };
-}
-
-module.exports = initModels;
+module.exports = {
+  User,
+  Employee,
+  EmploymentRecord,
+  TransferRequest,
+  Site,
+  CustomField,
+  AuditLog,
+  RecycleBin,
+  Permission,
+};
