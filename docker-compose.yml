@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-rootpass}
       MYSQL_DATABASE: ${DB_NAME:-suvadigital}
     ports:
-      - "3306:3306"
+      - "47821:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -29,7 +29,7 @@ services:
       PMA_PASSWORD: ${DB_PASSWORD:-rootpass}
       UPLOAD_LIMIT: 64M
     ports:
-      - "8080:80"
+      - "39152:80"
     networks:
       - suvadigital-net
     depends_on:
@@ -43,14 +43,14 @@ services:
     container_name: suvadigital-backend
     restart: unless-stopped
     environment:
-      APP_URL: ${APP_URL:-http://localhost:3001}
+      APP_URL: ${APP_URL:-http://localhost:51847}
       DB_NAME: ${DB_NAME:-suvadigital}
       DB_USER: ${DB_USER:-root}
       DB_PASSWORD: ${DB_PASSWORD:-rootpass}
       DB_HOST: mysql
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-secret_key_blue}
     ports:
-      - "3001:3001"
+      - "51847:3001"
     volumes:
       - backend_uploads:/app/uploads
     networks:
