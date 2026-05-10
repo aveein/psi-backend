@@ -49,9 +49,9 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-rootpass}
       DB_HOST: mysql
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-secret_key_blue}
-      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-}
-      COOKIE_SECURE: ${COOKIE_SECURE:-false}
-      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-.avin.com.np}
+      COOKIE_SECURE: ${COOKIE_SECURE:-true}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://psi.avin.com.np}
     ports:
       - "51847:3001"
     volumes:

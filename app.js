@@ -43,11 +43,10 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:3000")
 
 app.use(
   cors({
-    // origin: (origin, cb) => {
-    //   if (!origin || allowedOrigins.includes(origin)) cb(null, true);
-    //   else cb(new Error(`CORS: origin ${origin} not allowed`));
-    // },
-    origin: true, // allow all origins (for development)
+    origin: (origin, cb) => {
+      if (!origin || allowedOrigins.includes(origin)) cb(null, true);
+      else cb(new Error(`CORS: origin ${origin} not allowed`));
+    },
     credentials: true,
   })
 );
