@@ -36,14 +36,18 @@ const upload = multer({ storage });
 const photoUpload = upload.fields([{ name: "photo", maxCount: 1 }]);
 
 // middleware
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:3000")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
     // origin: (origin, cb) => {
     //   if (!origin || allowedOrigins.includes(origin)) cb(null, true);
-    //   else cb(new Error("Not allowed by CORS"));
+    //   else cb(new Error(`CORS: origin ${origin} not allowed`));
     // },
-    origin: true,
+    origin: true, // allow all origins (for development)
     credentials: true,
   })
 );

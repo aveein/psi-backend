@@ -24,8 +24,9 @@ class AuthController {
 
       res.cookie("token", token, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.COOKIE_SECURE === "true",
         sameSite: "lax",
+        domain: process.env.COOKIE_DOMAIN || undefined,
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
@@ -70,7 +71,12 @@ class AuthController {
         user: req.username,
       });
     }
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.COOKIE_SECURE === "true",
+      sameSite: "lax",
+      domain: process.env.COOKIE_DOMAIN || undefined,
+    });
     return res.status(200).json({ message: "Logged out" });
   }
 }
