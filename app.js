@@ -39,10 +39,11 @@ const photoUpload = upload.fields([{ name: "photo", maxCount: 1 }]);
 const allowedOrigins = ["http://localhost:3000"];
 app.use(
   cors({
-    origin: (origin, cb) => {
-      if (!origin || allowedOrigins.includes(origin)) cb(null, true);
-      else cb(new Error("Not allowed by CORS"));
-    },
+    // origin: (origin, cb) => {
+    //   if (!origin || allowedOrigins.includes(origin)) cb(null, true);
+    //   else cb(new Error("Not allowed by CORS"));
+    // },
+    origin: true,
     credentials: true,
   })
 );
